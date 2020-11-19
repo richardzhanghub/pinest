@@ -35,11 +35,19 @@ class ButtonHandler(threading.Thread):
         self.lock.release()
 
 
-def real_cb():
+def real_cb(pin):
     print('callback')
 
 
-GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-cb = ButtonHandler(4, real_cb, edge='rising', bouncetime=100)
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(8, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+cb = ButtonHandler(8, real_cb, edge='rising', bouncetime=100)
 cb.start()
-GPIO.add_event_detect(4, GPIO.RISING, callback=cb)
+GPIO.add_event_detect(8, GPIO.RISING, callback=cb)
+
+try:
+	while True:
+		pass
+except KeyboardInterrupt:
+	print('exiting')
