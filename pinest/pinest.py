@@ -1,5 +1,4 @@
 # Target display: 1024x600 touchscreen, raspberry pi 3
-
 from tkinter import *
 
 # function to find weather details
@@ -14,7 +13,8 @@ def tell_weather():
     units = "metric"
 
     # enter your api key here
-    api_key = "6c8127bffa2c42cf54f288b29f19d144"
+    file = open('pinest/openweather.key')
+    api_key = file.readline()
 
     # base_url variable to store url
     base_url = "http://api.openweathermap.org/data/2.5/weather?"

@@ -6,6 +6,9 @@ import random
 
 # Push Button class with debouncing
 # Usage:
+# cb = ButtonHandler(pin, real_cb, edge='rising', bouncetime=100)
+# cb.start()
+# GPIO.add_event_detect(pin, GPIO.RISING, callback=cb)
 class ButtonHandler(threading.Thread):
     def __init__(self, pin, func, edge='both', bouncetime=200):
         super().__init__(daemon=True)
@@ -93,9 +96,7 @@ if __name__ == "__main__":
     rgbled = RGBLED([3, 5, 7])
     rgbled.color_test_thread()
 
-    #cb = ButtonHandler(8, real_cb, edge='rising', bouncetime=100)
-    # cb.start()
-    #GPIO.add_event_detect(8, GPIO.RISING, callback=cb)
+    
 
     try:
         while True:
